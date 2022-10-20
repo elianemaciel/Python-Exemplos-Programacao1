@@ -1,6 +1,6 @@
 # Programa - Abrindo, escrevendo e fechando um arquivo
 
-arquivo = open("numeros.txt", "w")
-for linha in range(100):
-    arquivo.write(f"{linha}\n")
+arquivo = open("nomes.txt", "w")
+arquivo.write("Eliane,28,programacao1,")
+arquivo.write("João,29,programacao1,")
 arquivo.close()

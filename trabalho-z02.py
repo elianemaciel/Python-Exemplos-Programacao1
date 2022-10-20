@@ -1,8 +1,11 @@
-import PySimpleGUI as sg
 from random import randint
 
-MAX_ROWS = MAX_COL = 10
+import PySimpleGUI as sg
 
+MAX_ROWS = MAX_COL = 10
+BOMBAS = 10
+
+layout = []
 # Matriz de 10 x 10 de bombas do campo minado 
 board = [[0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0],
@@ -17,12 +20,33 @@ board = [[0,0,0,0,0,0,0,0,0,0],
 ]
 
 def gera_bombas_aleatorias():
-    # Nessa função vamos gerar as bombas aleatoriamente. Utilize a função randint
-    pass
+    # Nessa função vamos gerar as bombas aleatoriamente.
+    # Utilize a função randint
+    bomb = 0
+    while bomb < BOMBAS:
+        coluna = randint(0,9)
+        linha = randint(0,9)
+
+        if not tem_bomba(linha, coluna):
+            board[linha][coluna] = 1
+            bomb += 1
+    print(board)
+
+def tem_bomba(linha, coluna):
+    if board[linha][coluna] == 1:
+        return True
+    return False
+
 
 def gera_layout_tabuleiro():
-    # Nessa função vamos gerar o layout do tabuleiro. Para isso precisaremos fazer for de linhas e colunas
-    pass
+    global layout
+    for i in range(10):
+        layout[i] = []
+        for j in range(10):
+            pass
+
+#chamada de função gera bombas
+gera_bombas_aleatorias()
 
 # Gera o layout com os botões
 layout =  [[sg.Button('?', size=(4, 2), key=(0,0), pad=(0,0)), sg.Button('?', size=(4, 2), key=(0,1), pad=(0,0)), sg.Button('?', size=(4, 2), key=(0,0), pad=(0,0))]]
