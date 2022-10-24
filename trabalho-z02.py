@@ -41,15 +41,13 @@ def tem_bomba(linha, coluna):
 def gera_layout_tabuleiro():
     global layout
     for i in range(10):
-        layout[i] = []
+        layout.append([])
         for j in range(10):
-            pass
+            layout[i].append(sg.Button('?', size=(4, 2), key=(i,j), pad=(0,0)))
 
 #chamada de função gera bombas
 gera_bombas_aleatorias()
-
-# Gera o layout com os botões
-layout =  [[sg.Button('?', size=(4, 2), key=(0,0), pad=(0,0)), sg.Button('?', size=(4, 2), key=(0,1), pad=(0,0)), sg.Button('?', size=(4, 2), key=(0,0), pad=(0,0))]]
+gera_layout_tabuleiro()
 
 window = sg.Window('Minesweeper', layout)
 
@@ -60,4 +58,6 @@ while True:
     # verifica se existe bomba na botão clicado
     if board[event[0]][event[1]]:
         print("Tem bomba")
+    else:
+        window[(event[0], event[1])].update('0',  button_color=('white','black'))
 window.close()
